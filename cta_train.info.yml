@@ -1,0 +1,7 @@
+name: CTA Train
+description: Custom block to pull in and display the CTA train API from JSON.
+type: module
+core: 8.x
+package: Custom
+dependencies:
+  - drupal:block

@@ -1,0 +1,30 @@
+{#
+  @file cta-train.html.twig
+  Displays the output of the CTA train tracker.
+
+  Available variables:
+  - ohare_north, an array of:
+    train_number
+    destination
+    time
+  - ohare_south, an array of:
+    train_number
+    destination
+    time
+
+#}
+
+<div>
+  <h1>{{ 'Western Branch'|t }}</h1>
+  <p>{{ ohare_north.train_number }}</p>
+  <h4 class="train">
+    <span class="left">{{ ohare_north.destination }}</span>
+    <span class="right">{{ ohare_north.time }}</span>
+  </h4>
+</div>
+<div>
+  <p>{{ ohare_south.train_number }}</p>
+  <h4 class="train">
+    <span class="left">{{ ohare_south.destination }}</span>
+    <span class="right">{{ ohare_south.time }}</span></h4>
+</div>
