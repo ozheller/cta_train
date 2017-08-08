@@ -8,7 +8,7 @@
 
 /**
  * @file
- * Contains \Drupal\cta_train\Plugin\Block\ozBlock.
+ * Contains \Drupal\cta_train\Plugin\Block\CtaTrainBlock.
  */
 namespace Drupal\cta_train\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
@@ -37,17 +37,17 @@ class CtaTrainBlock extends BlockBase {
 
     // Builds a renderable array to display the content of _cta_train_pull()
     // using the cta-train.html.twig template as the content of the block.
-    return array(
+    return [
       // Define the theme hook to call
       '#theme' => 'cta_train',
       // Enter the variables defined by the hook (see hook_theme())
       '#ohare_north' => $output['ohare_north'],
       '#ohare_south' => $output['ohare_south'],
       // Define cache tags for the render array
-      '#cache' => array(
+      '#cache' => [
          'max-age' => 0,
-      )
-    );
+      ]
+    ];
 
   }
 }
@@ -78,7 +78,6 @@ class CtaTrainBlock extends BlockBase {
  * lon = Longitude position of the train in decimal degrees ex. "-87.70545"
  * heading = Heading, expressed in standard bearing degrees
  * (0 = North, 90 = East, 180 = South, and 270 = West; range is 0 to 359, progressing clockwise) ex. "132"
- *
  */
 
 function _cta_train_pull() {
@@ -93,10 +92,11 @@ function _cta_train_pull() {
   $ohare_data = Json::decode($ohare_request);
   $ohare_trains = $ohare_data['ctatt']['eta'];
 
+  /**
+   * Loop through the trains and set the values for the first northbound
+   * and southbound train. Once both trains are set, no new value is set.
+   */
   foreach ($ohare_trains as $train) {
-    // Loop through the trains and set the values for the first northbound
-    // and southbound train. Once both trains are set, no new value is set.
-    //
     if (!isset($variables['ohare_north']) || !isset($variables['ohare_south'])) {
       switch ($train['destNm']) {
         case 'O\'Hare':
@@ -119,4 +119,3 @@ function _cta_train_pull() {
   }
   return $variables;
 }
-

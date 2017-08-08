@@ -4,16 +4,16 @@
 *  Implements hook_theme().
 */
 function cta_train_theme($existing, $type, $theme, $path) {
-  $hooks = array();
+  $hooks = [];
 
   // Defines a custom theme function and template for the cta_train results.
   // @see cta-train.html.twig.
-  $hooks['cta_train'] = array(
-    'variables' => array(
-      'ohare_north' => array(),
-      'ohare_south' => array(),
-    )
-  );
+  $hooks['cta_train'] = [
+    'variables' => [
+      'ohare_north' => [],
+      'ohare_south' => [],
+    ]
+  ];
 
   // Optional: Points to a block.html.twig template provided by our module. If
   // the name of the template matches a suggestion that's already being
